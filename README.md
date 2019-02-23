@@ -110,7 +110,7 @@ while True:
 ### Rotary Encoder Wiring
 | Encoder Pin       | Connection           | 
 | ------------- |:-------------:| 
-| +      | 3.3V | 
+| \+      | 3.3V | 
 | GND     | Ground      |  
 | DT | GPIO pin      |  
 | CLK | GPIO pin      | 
