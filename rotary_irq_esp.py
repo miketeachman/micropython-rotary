@@ -1,5 +1,5 @@
 # The MIT License (MIT)
-# Copyright (c) 2018 Mike Teachman
+# Copyright (c) 2019 Mike Teachman
 # https://opensource.org/licenses/MIT
 
 # Platform-specific MicroPython code for the rotary encoder module
