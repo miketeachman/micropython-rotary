@@ -77,7 +77,7 @@ r.close
 * CLK pin attached to GPIO14
 * DT pin attached to GPIO13
 * GND pin attached to GND
-* + pin attached to 3.3V
+* \+ pin attached to 3.3V
 * Range mode = RotaryIRQ.RANGE_WRAP
 * Range 0...5
 
@@ -110,7 +110,7 @@ while True:
 ### Rotary Encoder Wiring
 | Encoder Pin       | Connection           | 
 | ------------- |:-------------:| 
-| \+      | 3.3V | 
+| +      | 3.3V | 
 | GND     | Ground      |  
 | DT | GPIO pin      |  
 | CLK | GPIO pin      | 
