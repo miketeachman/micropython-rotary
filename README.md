@@ -31,10 +31,10 @@ initialize
 ```
 r = RotaryIRQ(pin_num_clk, 
               pin_num_dt, 
-              min_val, 
-              max_val, 
-              reverse, 
-              range_mode)
+              [min_val=0], 
+              [max_val=10], 
+              [reverse=False], 
+              [range_mode=RotaryIRQ.RANGE_UNBOUNDED])
               
 ```
 read encoder
@@ -63,14 +63,14 @@ r.close
 | pin_num_dt     | GPIO pin connected to encoder DT pin      |  integer |
 | min_val | minimum value in the encoder range. Also the starting value |  integer |
 | max_val | maximum value in the encoder range (not used when range_mode = RANGE_UNBOUNDED)      | integer |
-| reverse | GPIO pin      | True or False(default) |
-| range_mode | GPIO pin      | RotaryIRQ.RANGE_UNBOUNDED(default) RotaryIRQ.RANGE_WRAP RotaryIRQ.RANGE_BOUNDED |
+| reverse | reverse count direction | True or False(default) |
+| range_mode | count behavior at min_val and max_val       | RotaryIRQ.RANGE_UNBOUNDED(default) RotaryIRQ.RANGE_WRAP RotaryIRQ.RANGE_BOUNDED |
 
 
 | range_mode | description |
 | ------------- | ------------- |
 | RotaryIRQ.RANGE_UNBOUNDED | encoder has no bounds on the counting range |
-| RotaryIRQ.RANGE_WRAP | encoder will count up to maximum value then wrap to minimum value (similar behaviour for count down) |
+| RotaryIRQ.RANGE_WRAP | encoder will count up to max_val then wrap to minimum value (similar behaviour for count down) |
 | RotaryIRQ.RANGE_BOUNDED |  encoder will count up to max_val then stop.  Count down stops at min_val |
 
 ## Example
