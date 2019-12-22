@@ -65,6 +65,9 @@ class Rotary(object):
         
     def value(self):
         return self._value
+      
+    def setvalue(self, val): 
+        self._value = val
 
     def reset(self):
         self._value = 0
