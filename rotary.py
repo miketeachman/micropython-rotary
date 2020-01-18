@@ -1,5 +1,5 @@
 # The MIT License (MIT)
-# Copyright (c) 2019 Mike Teachman
+# Copyright (c) 2020 Mike Teachman
 # https://opensource.org/licenses/MIT
 
 # Platform-independent MicroPython code for the rotary encoder module
@@ -63,6 +63,25 @@ class Rotary(object):
         self._value = min_val
         self._state = _R_START
         
+    def set(self, value=None, min_val=None, max_val=None, reverse=None, range_mode=None):
+        # disable DT and CLK pin interrupts
+        self._hal_disable_irq()
+        
+        if value != None:
+            self._value = value
+        if min_val != None:
+            self._min_val = min_val
+        if max_val != None:
+            self._max_val = max_val
+        if reverse != None:
+            self._reverse = -1 if reverse else 1
+        if range_mode != None:
+            self._range_mode = range_mode
+        self._state = _R_START
+
+        # enable DT and CLK pin interrupts
+        self._hal_enable_irq()
+    
     def value(self):
         return self._value
 
