@@ -37,7 +37,8 @@ ampy -pCOMx put rotary_irq_pyb.py
        min_val=0, 
        max_val=10, 
        reverse=False, 
-       range_mode=RotaryIRQ.RANGE_UNBOUNDED)
+       range_mode=RotaryIRQ.RANGE_UNBOUNDED,
+       pull_up=False)
 ```
 | argument       | description           | value |
 |-------------|-------------|---------|    
@@ -47,7 +48,7 @@ ampy -pCOMx put rotary_irq_pyb.py
 | max_val | maximum value in the encoder range (not used when range_mode = RANGE_UNBOUNDED)      | integer |
 | reverse | reverse count direction | True or False(default) |
 | range_mode | count behavior at min_val and max_val       | RotaryIRQ.RANGE_UNBOUNDED(default) RotaryIRQ.RANGE_WRAP RotaryIRQ.RANGE_BOUNDED |
-
+| pull_up | enable internal pull up resistors (use when rotary encoder hardware lacks pull up resistors) | True or False(default) |
 
 | range_mode | description |
 | ------------- | ------------- |
@@ -119,7 +120,7 @@ while True:
 
 #### MicroPython versions
 * MicroPython v1.12
-          
+* MicroPython v1.13          
 
 ### Rotary Encoder Wiring
 | Encoder Pin       | Connection           | 
