@@ -7,6 +7,8 @@
 # Documentation:
 #   https://github.com/MikeTeachman/micropython-rotary
 
+import micropython
+
 _DIR_CW = const(0x10)  # Clockwise step
 _DIR_CCW = const(0x20)  # Counter-clockwise step
 
@@ -52,6 +54,10 @@ def _bound(value, incr, lower_bound, upper_bound):
     return min(upper_bound, max(lower_bound, value + incr))
 
 
+def _trigger(rotary_instance):
+    for listener in rotary_instance._listener:
+        listener()
+
 class Rotary(object):
 
     RANGE_UNBOUNDED = const(1)
@@ -65,6 +71,7 @@ class Rotary(object):
         self._range_mode = range_mode
         self._value = min_val
         self._state = _R_START
+        self._listener = []
 
     def set(self, value=None, min_val=None,
             max_val=None, reverse=None, range_mode=None):
@@ -95,7 +102,11 @@ class Rotary(object):
     def close(self):
         self._hal_close()
 
+    def add_listener(self, l):
+        self._listener.append(l)
+
     def _process_rotary_pins(self, pin):
+        old_value = self._value
         clk_dt_pins = (self._hal_get_clk_value() <<
                        1) | self._hal_get_dt_value()
         # Determine next state
@@ -124,3 +135,9 @@ class Rotary(object):
                 self._max_val)
         else:
             self._value = self._value + incr
+
+        try:
+            if old_value != self._value and len(self._listener) != 0:
+                micropython.schedule(_trigger, self)
+        except:
+            pass
