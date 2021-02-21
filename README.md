@@ -38,7 +38,8 @@ ampy -pCOMx put rotary_irq_pyb.py
        max_val=10, 
        reverse=False, 
        range_mode=RotaryIRQ.RANGE_UNBOUNDED,
-       pull_up=False)
+       pull_up=False,
+       half_step=False)
 ```
 | argument       | description           | value |
 |-------------|-------------|---------|    
@@ -49,6 +50,7 @@ ampy -pCOMx put rotary_irq_pyb.py
 | reverse | reverse count direction | True or False(default) |
 | range_mode | count behavior at min_val and max_val       | RotaryIRQ.RANGE_UNBOUNDED(default) RotaryIRQ.RANGE_WRAP RotaryIRQ.RANGE_BOUNDED |
 | pull_up | enable internal pull up resistors (use when rotary encoder hardware lacks pull up resistors) | True or False(default) |
+| half_step | half-step mode | True or False(default) |
 
 | range_mode | description |
 | ------------- | ------------- |
@@ -67,6 +69,10 @@ Examples:
 * `set(value=6)`  change encoder value to `6`.  calling `value()` will now return `6`
 ***
 `reset()` set encoder value to `min_val`.  Redundant with the addition of the `set()` method.  Retained for backwards compatibility)
+***
+`add_listener(function)` add a callback function that will be called on each change of encoder count
+***
+`remove_listener(function)` remove a previously added callback function
 ***
 `close()` deactivate microcontroller pins used to read encoder     
 
@@ -120,7 +126,8 @@ while True:
 
 #### MicroPython versions
 * MicroPython v1.12
-* MicroPython v1.13          
+* MicroPython v1.13     
+* MicroPython v1.14     
 
 ### Rotary Encoder Wiring
 | Encoder Pin       | Connection           | 
@@ -157,6 +164,12 @@ The following ESP32 GPIO strapping pins should be **used with caution**.  There 
 *   GPIO12 - used to select flash voltage.  Internal pull-down resistor.
 *   GPIO15 - used to configure silencing of boot messages.  Internal pull-up resistor.
 
+### Examples
+MicroPython example code is contained in the [Examples](Examples) folder  
+[simple example](Examples/example_simple.py)  
+[uasyncio example](Examples/example_asyncio.py)  
+[uasyncio with classes example](Examples/example_asyncio_class.py)  
+
 ### Oscilloscope Captures
 CLK and DT transitions captured on an oscilloscope.  CLK = Yellow. DT = Blue
 
@@ -182,6 +195,5 @@ Other implementation ideas and techniques taken from:
 * https://github.com/dhylands/python_lcd
         
 ## Future Ambitions
-* uasyncio support
+* Raspberry Pi Pico support
 * argument error checking
-* add tests
