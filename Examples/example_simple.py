@@ -1,17 +1,23 @@
 # The MIT License (MIT)
-# Copyright (c) 2020 Mike Teachman
+# Copyright (c) 2021 Mike Teachman
 # https://opensource.org/licenses/MIT
 
 # example for MicroPython rotary encoder
-#
-# Documentation:
-#   https://github.com/MikeTeachman/micropython-rotary
+
+import sys
+if sys.platform == 'esp8266' or sys.platform == 'esp32':
+    from rotary_irq_esp import RotaryIRQ
+elif sys.platform == 'pyboard':
+    from rotary_irq_pyb import RotaryIRQ
+else:
+    print('Warning:  The Rotary module has not been tested on this platform')
 
 import time
-from rotary_irq_esp import RotaryIRQ
+import uasyncio as asyncio
+from machine import Pin
 
-r = RotaryIRQ(pin_num_clk=12,
-              pin_num_dt=13,
+r = RotaryIRQ(pin_num_clk=14,
+              pin_num_dt=15,
               min_val=0,
               max_val=5,
               reverse=False,

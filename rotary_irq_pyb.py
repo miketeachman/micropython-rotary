@@ -13,6 +13,7 @@ from pyb import Pin
 from pyb import ExtInt
 from rotary import Rotary
 
+
 class RotaryIRQ(Rotary):
 
     def __init__(self, pin_num_clk, pin_num_dt, min_val=0, max_val=10,

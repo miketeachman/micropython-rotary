@@ -14,6 +14,7 @@ from sys import platform
 
 _esp8266_deny_pins = [16]
 
+
 class RotaryIRQ(Rotary):
 
     def __init__(self, pin_num_clk, pin_num_dt, min_val=0, max_val=10,
@@ -30,7 +31,7 @@ class RotaryIRQ(Rotary):
                     (platform, pin_num_dt, _esp8266_deny_pins))
 
         super().__init__(min_val, max_val, reverse, range_mode, half_step)
-        
+
         if pull_up == True:
             self._pin_clk = Pin(pin_num_clk, Pin.IN, Pin.PULL_UP)
             self._pin_dt = Pin(pin_num_dt, Pin.IN, Pin.PULL_UP)
