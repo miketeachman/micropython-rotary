@@ -36,9 +36,16 @@ _transition_table = [
     [_R_CCW_2, _R_START, _R_CCW_3, _R_START | _DIR_CCW],  # _R_CCW_3
     [_R_START, _R_START, _R_START, _R_START]]             # _R_ILLEGAL
 
+_transition_table_half_step = [
+  [_R_CW_3,            _R_CW_2,  _R_CW_1,  _R_START],
+  [_R_CW_3 | _DIR_CCW, _R_START, _R_CW_1,  _R_START],
+  [_R_CW_3 | _DIR_CW,  _R_CW_2,  _R_START, _R_START],
+  [_R_CW_3,            _R_CCW_2, _R_CCW_1, _R_START],
+  [_R_CW_3,            _R_CW_2,  _R_CCW_1, _R_START | _DIR_CW],
+  [_R_CW_3,            _R_CCW_2, _R_CW_3,  _R_START | _DIR_CCW]]
+
 _STATE_MASK = const(0x07)
 _DIR_MASK = const(0x30)
-
 
 def _wrap(value, incr, lower_bound, upper_bound):
     range = upper_bound - lower_bound + 1
@@ -49,10 +56,8 @@ def _wrap(value, incr, lower_bound, upper_bound):
 
     return lower_bound + (value - lower_bound) % range
 
-
 def _bound(value, incr, lower_bound, upper_bound):
     return min(upper_bound, max(lower_bound, value + incr))
-
 
 def _trigger(rotary_instance):
     for listener in rotary_instance._listener:
@@ -63,14 +68,15 @@ class Rotary(object):
     RANGE_UNBOUNDED = const(1)
     RANGE_WRAP = const(2)
     RANGE_BOUNDED = const(3)
-
-    def __init__(self, min_val, max_val, reverse, range_mode):
+ 
+    def __init__(self, min_val, max_val, reverse, range_mode, half_step):
         self._min_val = min_val
         self._max_val = max_val
         self._reverse = -1 if reverse else 1
         self._range_mode = range_mode
         self._value = min_val
         self._state = _R_START
+        self._half_step = half_step
         self._listener = []
 
     def set(self, value=None, min_val=None,
@@ -110,7 +116,10 @@ class Rotary(object):
         clk_dt_pins = (self._hal_get_clk_value() <<
                        1) | self._hal_get_dt_value()
         # Determine next state
-        self._state = _transition_table[self._state & _STATE_MASK][clk_dt_pins]
+        if self._half_step:
+            self._state = _transition_table_half_step[self._state & _STATE_MASK][clk_dt_pins]
+        else:
+            self._state = _transition_table[self._state & _STATE_MASK][clk_dt_pins]
         direction = self._state & _DIR_MASK
 
         incr = 0
