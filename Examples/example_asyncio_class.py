@@ -17,7 +17,6 @@ else:
     print('Warning:  The Rotary module has not been tested on this platform')
 
 import uasyncio as asyncio
-from machine import Pin
 
 
 # example of a class that uses one rotary encoder

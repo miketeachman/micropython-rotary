@@ -13,8 +13,7 @@ else:
     print('Warning:  The Rotary module has not been tested on this platform')
 
 import time
-import uasyncio as asyncio
-from machine import Pin
+
 
 r = RotaryIRQ(pin_num_clk=14,
               pin_num_dt=15,

@@ -14,7 +14,6 @@ else:
     print('Warning:  The Rotary module has not been tested on this platform')
 
 import uasyncio as asyncio
-from machine import Pin
 
 
 # Use heartbeat to keep event loop not empty
