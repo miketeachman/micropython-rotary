@@ -1,5 +1,5 @@
 # MicroPython Rotary Encoder Driver
-A MicroPython driver to read a rotary encoder.  Works with Pyboard, ESP8266, and ESP32 development boards.  This is a robust implementation providing effective debouncing of encoder contacts.  It uses two GPIO pins configured to trigger interrupts, following Ben Buxton's implementation:
+A MicroPython driver to read a rotary encoder.  Works with Pyboard, Pico, ESP8266, and ESP32 development boards.  This is a robust implementation providing effective debouncing of encoder contacts.  It uses two GPIO pins configured to trigger interrupts, following Ben Buxton's implementation:
 * http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
 * https://github.com/buxtronix/arduino/tree/master/libraries/Rotary
 
@@ -120,6 +120,7 @@ while True:
 * Lolin D32 Pro (ESP32 with 4MB PSRAM)
 * Adafruit Feather Huzzah ESP8266
 * Adafruit Feather Huzzah ESP32
+* Raspberry Pico
 
 #### Rotary Encoders
 * KY-040 rotary encoder
@@ -195,5 +196,4 @@ Other implementation ideas and techniques taken from:
 * https://github.com/dhylands/python_lcd
         
 ## Future Ambitions
-* Raspberry Pi Pico support
 * argument error checking
