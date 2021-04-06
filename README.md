@@ -186,6 +186,7 @@ Testing with Pyboard D, Pyboard v1.1, and TinyPico development boards
 ![pyboard d](Images/pyboardd.jpg)
 ![pyboard b](Images/pyboard.jpg)
 ![tiny pico](Images/tinypico.jpg)
+![raspberry pico](Images/raspberrypico.jpg)
 
 ## Acknowlegements
 This MicroPython implementation is an adaptation of Ben Buxton's C++ work:  
