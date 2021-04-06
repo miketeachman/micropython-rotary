@@ -18,6 +18,7 @@ Two files are needed to use this module
 * platform-specific file:
   * `rotary_irq_esp.py`  Platform-specific code for ESP8266 and ESP32 development boards
   * `rotary_irq_pyb.py`  Platform-specific code for Pyboard development boards
+  * `rotary_irq_rp2.py`  Platform-specific code for Raspberry Pico development boards
 
 ### Copying files to development boards
 Copy files to the internal MicroPython filesystem using a utility such as `ampy` or `rshell`

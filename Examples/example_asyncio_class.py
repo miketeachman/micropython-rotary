@@ -70,8 +70,14 @@ async def main():
                                  reverse=False,
                                  range_mode=RotaryIRQ.RANGE_WRAP)
 
-    rotary_encoder_2 = RotaryIRQ(pin_num_clk=32,
-                                 pin_num_dt=33,
+    if sys.platform == 'rp2':
+        encoder2_pin_num_clk = 16
+        encoder2_pin_num_dt = 17
+    else:
+        encoder2_pin_num_clk = 32
+        encoder2_pin_num_dt = 33
+    rotary_encoder_2 = RotaryIRQ(pin_num_clk=encoder2_pin_num_clk,
+                                 pin_num_dt=encoder2_pin_num_dt,
                                  min_val=0,
                                  max_val=20,
                                  reverse=False,
