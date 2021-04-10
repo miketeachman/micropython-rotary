@@ -10,6 +10,8 @@ if sys.platform == 'esp8266' or sys.platform == 'esp32':
     from rotary_irq_esp import RotaryIRQ
 elif sys.platform == 'pyboard':
     from rotary_irq_pyb import RotaryIRQ
+elif sys.platform == 'rp2':
+    from rotary_irq_rp2 import RotaryIRQ
 else:
     print('Warning:  The Rotary module has not been tested on this platform')
 
@@ -29,8 +31,8 @@ def callback():
 
 
 async def main():
-    r = RotaryIRQ(pin_num_clk=14,
-                  pin_num_dt=15)
+    r = RotaryIRQ(pin_num_clk=13,
+                  pin_num_dt=14)
     r.add_listener(callback)
     
     asyncio.create_task(heartbeat())

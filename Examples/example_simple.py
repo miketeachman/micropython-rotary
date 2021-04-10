@@ -9,14 +9,16 @@ if sys.platform == 'esp8266' or sys.platform == 'esp32':
     from rotary_irq_esp import RotaryIRQ
 elif sys.platform == 'pyboard':
     from rotary_irq_pyb import RotaryIRQ
+elif sys.platform == 'rp2':
+    from rotary_irq_rp2 import RotaryIRQ
 else:
     print('Warning:  The Rotary module has not been tested on this platform')
 
 import time
 
 
-r = RotaryIRQ(pin_num_clk=14,
-              pin_num_dt=15,
+r = RotaryIRQ(pin_num_clk=13,
+              pin_num_dt=14,
               min_val=0,
               max_val=5,
               reverse=False,

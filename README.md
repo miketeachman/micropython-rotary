@@ -1,5 +1,5 @@
 # MicroPython Rotary Encoder Driver
-A MicroPython driver to read a rotary encoder.  Works with Pyboard, ESP8266, and ESP32 development boards.  This is a robust implementation providing effective debouncing of encoder contacts.  It uses two GPIO pins configured to trigger interrupts, following Ben Buxton's implementation:
+A MicroPython driver to read a rotary encoder.  Works with Pyboard, Raspberry Pi Pico, ESP8266, and ESP32 development boards.  This is a robust implementation providing effective debouncing of encoder contacts.  It uses two GPIO pins configured to trigger interrupts, following Ben Buxton's implementation:
 * http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
 * https://github.com/buxtronix/arduino/tree/master/libraries/Rotary
 
@@ -18,6 +18,7 @@ Two files are needed to use this module
 * platform-specific file:
   * `rotary_irq_esp.py`  Platform-specific code for ESP8266 and ESP32 development boards
   * `rotary_irq_pyb.py`  Platform-specific code for Pyboard development boards
+  * `rotary_irq_rp2.py`  Platform-specific code for Raspberry Pi Pico development boards
 
 ### Copying files to development boards
 Copy files to the internal MicroPython filesystem using a utility such as `ampy` or `rshell`
@@ -120,6 +121,7 @@ while True:
 * Lolin D32 Pro (ESP32 with 4MB PSRAM)
 * Adafruit Feather Huzzah ESP8266
 * Adafruit Feather Huzzah ESP32
+* Raspberry Pi Pico
 
 #### Rotary Encoders
 * KY-040 rotary encoder
@@ -180,10 +182,11 @@ One counter-clockwise step
 ![ccw](https://user-images.githubusercontent.com/12716600/46682653-fe83ef80-cba2-11e8-9a2a-b6ee1f3bdee7.png)
 
 ### Board Hall of Fame
-Testing with Pyboard D, Pyboard v1.1, and TinyPico development boards
+Testing with Pyboard D, Pyboard v1.1, TinyPico, and Raspberry Pi Pico development boards
 ![pyboard d](Images/pyboardd.jpg)
 ![pyboard b](Images/pyboard.jpg)
 ![tiny pico](Images/tinypico.jpg)
+![raspberry pi pico](Images/raspberrypipico.jpg)
 
 ## Acknowlegements
 This MicroPython implementation is an adaptation of Ben Buxton's C++ work:  
@@ -195,5 +198,4 @@ Other implementation ideas and techniques taken from:
 * https://github.com/dhylands/python_lcd
         
 ## Future Ambitions
-* Raspberry Pi Pico support
 * argument error checking

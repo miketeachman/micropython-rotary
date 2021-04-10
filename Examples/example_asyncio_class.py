@@ -13,6 +13,8 @@ if sys.platform == 'esp8266' or sys.platform == 'esp32':
     from rotary_irq_esp import RotaryIRQ
 elif sys.platform == 'pyboard':
     from rotary_irq_pyb import RotaryIRQ
+elif sys.platform == 'rp2':
+    from rotary_irq_rp2 import RotaryIRQ
 else:
     print('Warning:  The Rotary module has not been tested on this platform')
 
@@ -61,15 +63,15 @@ class Application2():
 
 
 async def main():
-    rotary_encoder_1 = RotaryIRQ(pin_num_clk=14,
-                                 pin_num_dt=15,
+    rotary_encoder_1 = RotaryIRQ(pin_num_clk=13,
+                                 pin_num_dt=14,
                                  min_val=0,
                                  max_val=5,
                                  reverse=False,
                                  range_mode=RotaryIRQ.RANGE_WRAP)
 
-    rotary_encoder_2 = RotaryIRQ(pin_num_clk=32,
-                                 pin_num_dt=33,
+    rotary_encoder_2 = RotaryIRQ(pin_num_clk=18,
+                                 pin_num_dt=19,
                                  min_val=0,
                                  max_val=20,
                                  reverse=False,
