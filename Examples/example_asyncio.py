@@ -31,8 +31,8 @@ def callback():
 
 
 async def main():
-    r = RotaryIRQ(pin_num_clk=14,
-                  pin_num_dt=15)
+    r = RotaryIRQ(pin_num_clk=13,
+                  pin_num_dt=14)
     r.add_listener(callback)
     
     asyncio.create_task(heartbeat())

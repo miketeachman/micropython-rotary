@@ -63,21 +63,15 @@ class Application2():
 
 
 async def main():
-    rotary_encoder_1 = RotaryIRQ(pin_num_clk=14,
-                                 pin_num_dt=15,
+    rotary_encoder_1 = RotaryIRQ(pin_num_clk=13,
+                                 pin_num_dt=14,
                                  min_val=0,
                                  max_val=5,
                                  reverse=False,
                                  range_mode=RotaryIRQ.RANGE_WRAP)
 
-    if sys.platform == 'rp2':
-        encoder2_pin_num_clk = 16
-        encoder2_pin_num_dt = 17
-    else:
-        encoder2_pin_num_clk = 32
-        encoder2_pin_num_dt = 33
-    rotary_encoder_2 = RotaryIRQ(pin_num_clk=encoder2_pin_num_clk,
-                                 pin_num_dt=encoder2_pin_num_dt,
+    rotary_encoder_2 = RotaryIRQ(pin_num_clk=18,
+                                 pin_num_dt=19,
                                  min_val=0,
                                  max_val=20,
                                  reverse=False,

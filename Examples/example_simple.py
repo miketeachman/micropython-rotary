@@ -17,8 +17,8 @@ else:
 import time
 
 
-r = RotaryIRQ(pin_num_clk=14,
-              pin_num_dt=15,
+r = RotaryIRQ(pin_num_clk=13,
+              pin_num_dt=14,
               min_val=0,
               max_val=5,
               reverse=False,
