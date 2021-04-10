@@ -3,7 +3,7 @@
 # https://opensource.org/licenses/MIT
 
 # Platform-specific MicroPython code for the rotary encoder module
-# Pico implementation
+# Raspberry Pi Pico implementation
 
 # Documentation:
 #   https://github.com/MikeTeachman/micropython-rotary
