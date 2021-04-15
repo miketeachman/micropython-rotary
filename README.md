@@ -199,3 +199,4 @@ Other implementation ideas and techniques taken from:
         
 ## Future Ambitions
 * argument error checking
+* investigation using the PIO on the rp2 to improve performance
