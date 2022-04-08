@@ -28,10 +28,10 @@ _transition_table = [
     # CLK/DT    CLK/DT     CLK/DT    CLK/DT
     #   00        01         10        11
     [_R_START, _R_CCW_1, _R_CW_1,  _R_START],             # _R_START
-    [_R_CW_2,  _R_START, _R_CW_1,  _R_START],             # _R_CW_1
+    [_R_CW_2,  _R_START, _R_CW_1,  _R_START | _DIR_CCW],  # _R_CW_1
     [_R_CW_2,  _R_CW_3,  _R_CW_1,  _R_START],             # _R_CW_2
     [_R_CW_2,  _R_CW_3,  _R_START, _R_START | _DIR_CW],   # _R_CW_3
-    [_R_CCW_2, _R_CCW_1, _R_START, _R_START],             # _R_CCW_1
+    [_R_CCW_2, _R_CCW_1, _R_START, _R_START | _DIR_CW],   # _R_CCW_1
     [_R_CCW_2, _R_CCW_1, _R_CCW_3, _R_START],             # _R_CCW_2
     [_R_CCW_2, _R_START, _R_CCW_3, _R_START | _DIR_CCW],  # _R_CCW_3
     [_R_START, _R_START, _R_START, _R_START]]             # _R_ILLEGAL
