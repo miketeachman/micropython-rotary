@@ -1,5 +1,5 @@
 # The MIT License (MIT)
-# Copyright (c) 2020 Mike Teachman
+# Copyright (c) 2022 Mike Teachman
 # https://opensource.org/licenses/MIT
 
 # Platform-independent MicroPython code for the rotary encoder module
@@ -42,7 +42,9 @@ _transition_table_half_step = [
     [_R_CW_3 | _DIR_CW,  _R_CW_2,  _R_START, _R_START],
     [_R_CW_3,            _R_CCW_2, _R_CCW_1, _R_START],
     [_R_CW_3,            _R_CW_2,  _R_CCW_1, _R_START | _DIR_CW],
-    [_R_CW_3,            _R_CCW_2, _R_CW_3,  _R_START | _DIR_CCW]]
+    [_R_CW_3,            _R_CCW_2, _R_CW_3,  _R_START | _DIR_CCW],
+    [_R_START,           _R_START, _R_START, _R_START],
+    [_R_START,           _R_START, _R_START, _R_START]]
 
 _STATE_MASK = const(0x07)
 _DIR_MASK = const(0x30)
@@ -73,7 +75,7 @@ class Rotary(object):
     RANGE_WRAP = const(2)
     RANGE_BOUNDED = const(3)
 
-    def __init__(self, min_val, max_val, reverse, range_mode, half_step):
+    def __init__(self, min_val, max_val, reverse, range_mode, half_step, invert):
         self._min_val = min_val
         self._max_val = max_val
         self._reverse = -1 if reverse else 1
@@ -81,6 +83,7 @@ class Rotary(object):
         self._value = min_val
         self._state = _R_START
         self._half_step = half_step
+        self._invert = invert
         self._listener = []
 
     def set(self, value=None, min_val=None,
@@ -124,6 +127,10 @@ class Rotary(object):
         old_value = self._value
         clk_dt_pins = (self._hal_get_clk_value() <<
                        1) | self._hal_get_dt_value()
+                       
+        if self._invert:
+            clk_dt_pins = ~clk_dt_pins & 0x03
+            
         # Determine next state
         if self._half_step:
             self._state = _transition_table_half_step[self._state &

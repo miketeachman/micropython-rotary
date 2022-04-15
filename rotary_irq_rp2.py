@@ -26,8 +26,9 @@ class RotaryIRQ(Rotary):
         range_mode=Rotary.RANGE_UNBOUNDED,
         pull_up=False,
         half_step=False,
+        invert=False,
     ):
-        super().__init__(min_val, max_val, reverse, range_mode, half_step)
+        super().__init__(min_val, max_val, reverse, range_mode, half_step, invert)
 
         if pull_up:
             self._pin_clk = Pin(pin_num_clk, Pin.IN, Pin.PULL_UP)

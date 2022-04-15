@@ -40,7 +40,8 @@ ampy -pCOMx put rotary_irq_pyb.py
        reverse=False, 
        range_mode=RotaryIRQ.RANGE_UNBOUNDED,
        pull_up=False,
-       half_step=False)
+       half_step=False,
+       invert=False)
 ```
 | argument       | description           | value |
 |-------------|-------------|---------|    
@@ -50,8 +51,9 @@ ampy -pCOMx put rotary_irq_pyb.py
 | max_val | maximum value in the encoder range (not used when range_mode = RANGE_UNBOUNDED)      | integer |
 | reverse | reverse count direction | True or False(default) |
 | range_mode | count behavior at min_val and max_val       | RotaryIRQ.RANGE_UNBOUNDED(default) RotaryIRQ.RANGE_WRAP RotaryIRQ.RANGE_BOUNDED |
-| pull_up | enable internal pull up resistors (use when rotary encoder hardware lacks pull up resistors) | True or False(default) |
+| pull_up | enable internal pull up resistors. Use when rotary encoder hardware lacks pull up resistors | True or False(default) |
 | half_step | half-step mode | True or False(default) |
+| invert | invert the CLK and DT signals.  Use when encoder resting value is CLK, DT = 00 | True or False(default) |
 
 | range_mode | description |
 | ------------- | ------------- |
@@ -126,12 +128,7 @@ while True:
 #### Rotary Encoders
 * KY-040 rotary encoder
 
-#### MicroPython versions
-* MicroPython v1.12
-* MicroPython v1.13     
-* MicroPython v1.14     
-
-### Rotary Encoder Wiring
+### Wiring for KY-040 encoder
 | Encoder Pin       | Connection           | 
 | ------------- |:-------------:| 
 | +      | 3.3V | 
