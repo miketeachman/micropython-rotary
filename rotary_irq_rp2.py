@@ -1,4 +1,4 @@
-# The MIT License (MIT)
+# MIT License (MIT)
 # Copyright (c) 2020 Mike Teachman
 # Copyright (c) 2021 Eric Moyer
 # https://opensource.org/licenses/MIT

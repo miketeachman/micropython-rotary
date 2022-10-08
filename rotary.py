@@ -1,4 +1,4 @@
-# The MIT License (MIT)
+# MIT License (MIT)
 # Copyright (c) 2022 Mike Teachman
 # https://opensource.org/licenses/MIT
 
@@ -165,6 +165,6 @@ class Rotary(object):
 
         try:
             if old_value != self._value and len(self._listener) != 0:
-                micropython.schedule(_trigger, self)
+                _trigger(self)
         except:
             pass
