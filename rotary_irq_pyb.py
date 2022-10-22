@@ -16,9 +16,9 @@ from rotary import Rotary
 
 class RotaryIRQ(Rotary):
 
-    def __init__(self, pin_num_clk, pin_num_dt, min_val=0, max_val=10,
+    def __init__(self, pin_num_clk, pin_num_dt, min_val=0, max_val=10, incr=1,
                  reverse=False, range_mode=Rotary.RANGE_UNBOUNDED, pull_up=False, half_step=False, invert=False):
-        super().__init__(min_val, max_val, reverse, range_mode, half_step, invert)
+        super().__init__(min_val, max_val, incr, reverse, range_mode, half_step, invert)
 
         if pull_up == True:
             self._pin_clk = Pin(pin_num_clk, Pin.IN, Pin.PULL_UP)

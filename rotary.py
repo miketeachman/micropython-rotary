@@ -75,9 +75,10 @@ class Rotary(object):
     RANGE_WRAP = const(2)
     RANGE_BOUNDED = const(3)
 
-    def __init__(self, min_val, max_val, reverse, range_mode, half_step, invert):
+    def __init__(self, min_val, max_val, incr, reverse, range_mode, half_step, invert):
         self._min_val = min_val
         self._max_val = max_val
+        self._incr = incr
         self._reverse = -1 if reverse else 1
         self._range_mode = range_mode
         self._value = min_val
@@ -86,7 +87,7 @@ class Rotary(object):
         self._invert = invert
         self._listener = []
 
-    def set(self, value=None, min_val=None,
+    def set(self, value=None, min_val=None, incr=None,
             max_val=None, reverse=None, range_mode=None):
         # disable DT and CLK pin interrupts
         self._hal_disable_irq()
@@ -97,6 +98,8 @@ class Rotary(object):
             self._min_val = min_val
         if max_val is not None:
             self._max_val = max_val
+        if incr is not None:
+            self._incr = incr
         if reverse is not None:
             self._reverse = -1 if reverse else 1
         if range_mode is not None:
@@ -142,9 +145,9 @@ class Rotary(object):
 
         incr = 0
         if direction == _DIR_CW:
-            incr = 1
+            incr = self._incr
         elif direction == _DIR_CCW:
-            incr = -1
+            incr = -self._incr
 
         incr *= self._reverse
 
