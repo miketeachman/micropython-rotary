@@ -130,6 +130,7 @@ while True:
 
 #### Rotary Encoders
 * KY-040 rotary encoder
+* Fermion: EC11 Rotary Encoder Module (thanks @sfblackwell)
 
 ### Wiring for KY-040 encoder
 | Encoder Pin       | Connection           | 
