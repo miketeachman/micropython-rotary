@@ -23,20 +23,29 @@ class RotaryIRQ(Rotary):
         if pull_up == True:
             self._pin_clk = Pin(pin_num_clk, Pin.IN, Pin.PULL_UP)
             self._pin_dt = Pin(pin_num_dt, Pin.IN, Pin.PULL_UP)
+            self._pin_clk_irq = ExtInt(
+                pin_num_clk,
+                ExtInt.IRQ_RISING_FALLING,
+                Pin.PULL_UP,
+                self._process_rotary_pins)
+            self._pin_dt_irq = ExtInt(
+                pin_num_dt,
+                ExtInt.IRQ_RISING_FALLING,
+                Pin.PULL_UP,
+                self._process_rotary_pins)
         else:
             self._pin_clk = Pin(pin_num_clk, Pin.IN)
             self._pin_dt = Pin(pin_num_dt, Pin.IN)
-
-        self._pin_clk_irq = ExtInt(
-            pin_num_clk,
-            ExtInt.IRQ_RISING_FALLING,
-            Pin.PULL_NONE,
-            self._process_rotary_pins)
-        self._pin_dt_irq = ExtInt(
-            pin_num_dt,
-            ExtInt.IRQ_RISING_FALLING,
-            Pin.PULL_NONE,
-            self._process_rotary_pins)
+            self._pin_clk_irq = ExtInt(
+                pin_num_clk,
+                ExtInt.IRQ_RISING_FALLING,
+                Pin.PULL_NONE,
+                self._process_rotary_pins)
+            self._pin_dt_irq = ExtInt(
+                pin_num_dt,
+                ExtInt.IRQ_RISING_FALLING,
+                Pin.PULL_NONE,
+                self._process_rotary_pins)
 
         # turn on 3.3V output to power the rotary encoder (pyboard D only)
         if 'PYBD' in os.uname().machine:
