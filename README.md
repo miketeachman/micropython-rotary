@@ -34,13 +34,13 @@ Starting with MicroPython 1.20.0, it can be installed from [mip](https://docs.mi
 
 ```
 >>> import mip
->>> mip.install("github:jimmo/micropython-mlx90640")
+>>> mip.install("github:miketeachman/micropython-rotary")
 ```
 
 Or from mpremote via:
 
 ```bash
-mpremote mip install github:jimmo/micropython-mlx90640
+mpremote mip install github:miketeachman/micropython-rotary
 ```
 
 ## Class `RotaryIRQ`
