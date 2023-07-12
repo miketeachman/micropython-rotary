@@ -37,6 +37,7 @@ ampy -pCOMx put rotary_irq_pyb.py
        pin_num_dt, 
        min_val=0, 
        max_val=10, 
+       incr=1,
        reverse=False, 
        range_mode=RotaryIRQ.RANGE_UNBOUNDED,
        pull_up=False,
@@ -49,6 +50,7 @@ ampy -pCOMx put rotary_irq_pyb.py
 | pin_num_dt     | GPIO pin connected to encoder DT pin      |  integer |
 | min_val | minimum value in the encoder range. Also the starting value |  integer |
 | max_val | maximum value in the encoder range (not used when range_mode = RANGE_UNBOUNDED)      | integer |
+| incr | amount count changes with each encoder click      | integer (default=1)|
 | reverse | reverse count direction | True or False(default) |
 | range_mode | count behavior at min_val and max_val       | RotaryIRQ.RANGE_UNBOUNDED(default) RotaryIRQ.RANGE_WRAP RotaryIRQ.RANGE_BOUNDED |
 | pull_up | enable internal pull up resistors. Use when rotary encoder hardware lacks pull up resistors | True or False(default) |
@@ -64,7 +66,7 @@ ampy -pCOMx put rotary_irq_pyb.py
 ### Methods     
 `value()` Return the encoder value
 ***
-`set(value=None, min_val=None, max_val=None, reverse=None, range_mode=None)`
+`set(value=None, min_val=None, max_val=None, incr=None, reverse=None, range_mode=None)`
 Set encoder value and internal configuration parameters.  See constructor for argument descriptions. `None` indicates no change to the configuration parameter
 
 Examples: 
@@ -124,9 +126,11 @@ while True:
 * Adafruit Feather Huzzah ESP8266
 * Adafruit Feather Huzzah ESP32
 * Raspberry Pi Pico
+* Raspberry Pi Pico W
 
 #### Rotary Encoders
 * KY-040 rotary encoder
+* Fermion: EC11 Rotary Encoder Module (thanks @sfblackwell)
 
 ### Wiring for KY-040 encoder
 | Encoder Pin       | Connection           | 
@@ -196,4 +200,3 @@ Other implementation ideas and techniques taken from:
         
 ## Future Ambitions
 * argument error checking
-* investigation using the PIO on the rp2 to improve performance
