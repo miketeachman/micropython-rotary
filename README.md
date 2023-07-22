@@ -28,6 +28,21 @@ ampy -pCOMx put rotary.py
 ampy -pCOMx put rotary_irq_pyb.py
 ```
 
+### mip install
+
+Starting with MicroPython 1.20.0, it can be installed from [mip](https://docs.micropython.org/en/latest/reference/packages.html#installing-packages-with-mip) via:
+
+```
+>>> import mip
+>>> mip.install("github:miketeachman/micropython-rotary")
+```
+
+Or from mpremote via:
+
+```bash
+mpremote mip install github:miketeachman/micropython-rotary
+```
+
 ## Class `RotaryIRQ`
 ### Constructor
 

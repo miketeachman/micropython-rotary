@@ -1,0 +1,9 @@
+{
+  "urls": [
+    ["rotary.py", "github:miketeachman/micropython-rotary/rotary.py"],
+    ["rotary_irq_esp.py", "github:miketeachman/micropython-rotary/rotary_irq_esp.py"],
+    ["rotary_irq_pyb.py", "github:miketeachman/micropython-rotary/rotary_irq_pyb.py"],
+    ["rotary_irq_rp2.py", "github:miketeachman/micropython-rotary/rotary_irq_rp2.py"]
+  ],
+  "version": "1.0"
+}
