@@ -88,6 +88,12 @@ Examples:
 * `set(min_val=0, max_val=59)` change encoder bounds - useful to set minutes on a clock display
 * `set(value=6)`  change encoder value to `6`.  calling `value()` will now return `6`
 ***
+`percent(scale=100.0)` Return the encoder value in percent
+
+Examples:
+* `percent()` Return the encoder value in percent (0.0 through 100.0)
+* `percent(scale=1.0)` Return the encoder value in the range 0.0 through 1.0
+***
 `reset()` set encoder value to `min_val`.  Redundant with the addition of the `set()` method.  Retained for backwards compatibility)
 ***
 `add_listener(function)` add a callback function that will be called on each change of encoder count

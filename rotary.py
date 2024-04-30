@@ -112,6 +112,9 @@ class Rotary(object):
     def value(self):
         return self._value
 
+    def percent(self, scale=100.0):
+        return scale * (self._value - self._min_val) / (self._max_val - self._min_val)
+
     def reset(self):
         self._value = 0
 
