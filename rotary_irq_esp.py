@@ -42,6 +42,9 @@ class RotaryIRQ(Rotary):
         self._enable_clk_irq(self._process_rotary_pins)
         self._enable_dt_irq(self._process_rotary_pins)
 
+        # Seed the decoder from the current detent before the first edge.
+        self._process_rotary_pins(None)
+
     def _enable_clk_irq(self, callback=None):
         self._pin_clk.irq(
             trigger=Pin.IRQ_RISING | Pin.IRQ_FALLING,

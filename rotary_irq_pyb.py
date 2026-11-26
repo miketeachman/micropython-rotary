@@ -51,6 +51,9 @@ class RotaryIRQ(Rotary):
         if 'PYBD' in os.uname().machine:
             Pin('EN_3V3').value(1)
 
+        # Seed the decoder from the current detent before the first edge.
+        self._process_rotary_pins(None)
+
     def _enable_clk_irq(self):
         self._pin_clk_irq.enable()
 
